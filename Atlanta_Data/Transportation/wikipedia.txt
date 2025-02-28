@@ -1,0 +1,86 @@
+The MARTA rail network, a component of the MARTA transit system in Metro Atlanta, has four service lines: the Red, Gold, Blue, and Green lines. The Red and Gold lines mainly run along the North-Northeast corridor, and the Blue and Green Lines run along the West-East corridor. The two corridors connect at the Five Points station, which is the only station where transfers are possible between all four lines. In 2023, the system had a ridership of 31,110,300, or about 90,500 per weekday as of the third quarter of 2024.
+
+Rail system
+All trains are identified by their destinations, and an automated announcement system announces train destinations, bus and other transit connections, and landmarks that are at or near each rail station.
+
+Each station also has a secondary designation that provides the cardinal direction (typically north, south, east, or west) and relative distance from the central Five Points station. For instance, Lindbergh Center is the sixth station from Five Points traveling north, and has the secondary designation (N6). Northeast of Lindbergh Center on the Gold Line, stations are designated with NE while continuing the numbering, so Lenox is (NE7). Similarly, Bankhead is on a branch from the main east-west trunk and is designated (P4),[3] a legacy of the original Proctor Creek name for the Green Line.[4]
+
+During daytime hours, trains on the Red and Gold lines service the entire north-south trunk line and split north of Lindbergh Center (N6). All MARTA trains are identified with a destination on electronic LCD signs on the front and sides of the train and on each car. After 9pm, the Red Line is short-turned and runs as a shuttle between North Springs (N11) and Lindbergh Center (N6), connecting to the Gold Line at Lindbergh Center.[5] The connection is scheduled, with southbound Red trains arriving at Lindbergh Center just before Gold trains continuing southbound, and in reverse, northbound Gold trains arrive at Lindbergh just before Red trains leave northbound.
+
+Blue and Green lines service the east-west trunk line together between Ashby (W3) and Edgewood–Candler Park (E4). At Ashby, Blue Line service continues to H.E. Holmes (W5) while Green Line trains divert to Bankhead Station (P4). Green Line service terminates at Edgewood–Candler Park, while the Blue Line continues east to Indian Creek. After 9pm, Green Line service is short-turned and operates as a shuttle between Bankhead (P4) and Vine City (stop W2). On weekends before 9pm, Green Line service is short-turned at King Memorial (stop E2).[5]
+
+Older system maps used orange to denote the North-South line and blue for the East-West line, including the Northeast and Proctor Creek branches.[6] Lines were identified by the direction of travel and/or terminals.[4][7] MARTA switched to a color-based route naming system in October 2009, so the Proctor Creek or Bankhead-Edgewood line became the Green Line, for example.[8] The former Northeast line that served Doraville, known as the "heart of Atlanta's Asian community", was initially named the Yellow Line, which Asian-Americans found derogatory.[9] It was renamed to the Gold Line in 2010 in response to the complaints.[10]
+
+Many suburban stations offer designated free daily and paid long term parking in MARTA-operated park and ride lots.[11] These stations also have designated kiss and ride passenger drop off parking spaces closest to the stations' entrances.
+
+Operation
+The MARTA rail system operates between approximately 4:45 a.m. and 1 a.m. Monday through Friday, and 6 a.m. to 1 a.m. Saturdays and Sundays.[12]
+
+System headways (December 2024) [12][13]
+Period	Headway
+(min.)
+Weekday	Daytime
+(6 AM – 7 PM)	10
+(non-rush)	12
+Nights
+(9 PM+)	20
+Weekends	20
+Due to the COVID-19 pandemic in Atlanta, train headways were reduced to 15 minute intervals between trains during most weekday hours and 20 minutes at other times.[14] In August 2023, MARTA announced that frequencies would increase to every 12 minutes on all rail lines between 6 a.m. and 9 a.m. and 2:30 p.m. and 7:30 p.m. Following the increase, headways would be every 6 minutes along the interlined portion of the network.[15] In December 2024, they announced that frequencies would increase again back to their pre-pandemic headways of every 10 minutes between 6 a.m. and 9 a.m. and 3 p.m. and 7 p.m and every 12 minutes during off-peak hours on weekdays.[13]
+
+Historical system headways 
+Period	Headway (min.)
+1979–2005	2005–2020
+Weekday	Rush
+(6–9 AM & 3–7 PM)	8	10
+Non-rush	12
+Nights
+(9 PM+)	15	20
+Weekends	10/15	20
+Originally, MARTA operated trains every eight minutes during the day on weekdays on each route. When two routes operated on the same tracks, the effective headway was cut in half, and the North-South Line operated on a combined four-minute headway between Lindbergh Center and Airport stations on the trunk. On Saturdays, it was every ten minutes (five minutes combined on the North-South Line trunk), and on Sundays it was every 15 minutes (7.5 minutes on the North-South Line trunk). At night, trains operated every 15 minutes.[16]
+
+After budget cuts in 2005 affected the rail system, headways were increased by 25–50% to 10 minutes weekdays during rush hour and 12 minutes during midday, and 20 minutes nightly and weekends. For combined service, headways decrease to 5 minutes during rush hour and 6 minutes during midday and 10 minutes on the weekends during the day. All rail lines operate 20 minutes during late night (8:30pm weekdays, 8:50pm weekends) as the Red Line was short-turned and only ran from North Springs to Lindbergh Center; likewise the Green Line was short turned and operated from Bankhead to Vine City. Due to ongoing rail system maintenance, weekend headways were variable and could range from the normal 20 minutes to as much as 24 minutes, with the Green and Red lines being truncated in up to 80% of weekends in 2024.[17] During weekends in the latter case, headways along the shared lines will increase from 10 minutes to 20 minutes.[18]
+
+Stations
+† denotes a terminal station
+Until 1994, the NE codes were designated as N
+Station	Code	Lines	Jurisdiction	Structure	Opened	Entries/day
+(2013)[19]	Ref.
+Airport†	S7	   	College Park	Elevated	June 18, 1988	9,173	[20]
+Arts Center	N5	   	Atlanta	Underground	December 18, 1982	6,605	[21]
+Ashby	W3	   	Atlanta	Underground	December 22, 1979	1,791	[22]
+Avondale	E7	 	Decatur	At-grade	June 30, 1979	4,327	[23]
+Bankhead†	P4	 	Atlanta	Elevated	December 12, 1992	1,903	[24]
+Brookhaven/Oglethorpe	NE8	 	Brookhaven	Elevated	December 15, 1984	2,357	[25]
+Buckhead	N7	 	Atlanta	At-grade	June 8, 1996	2,643	[26]
+Chamblee	NE9	 	Chamblee	Elevated	December 19, 1987	3,785	[27]
+Civic Center	N2	   	Atlanta	Underground, elevated	December 4, 1981	2,692	[21]
+College Park	S6	   	College Park	Open-cut	June 18, 1988	9,026	[20]
+Decatur	E6	 	Decatur	Underground	June 30, 1979	3,821	[23]
+GWCC/CNN Center	W1	   	Atlanta	At grade	December 22, 1979	2,107	[22]
+Doraville†	NE10	 	Doraville	Elevated	December 12, 1992	5,521	[24]
+Dunwoody	N9	 	Dunwoody	Elevated	June 8, 1996	3,545	[26]
+East Lake	E5	 	Atlanta/Decatur	At-grade	June 30, 1979	1,241	[23]
+East Point	S5	   	East Point	Open-cut	August 16, 1986	4,571	[28]
+Edgewood/Candler Park	E4	   	Atlanta	Elevated	June 30, 1979	1,143	[23]
+Five Points*	0	   	Atlanta	Underground	December 4, 1981	19,447	[23]
+   	At-grade	December 22, 1979
+Garnett	S1	   	Atlanta	Elevated	December 4, 1981	1,516	[21]
+Georgia State	E1	   	Atlanta	Elevated	June 30, 1979	4,055	[23]
+H. E. Holmes†	W5	 	Atlanta	Elevated	December 22, 1979	6,480	[22]
+Indian Creek†	E9	 	Unincorporated DeKalb County	At-grade	June 26, 1993	5,612	[29]
+Inman Park/Reynoldstown	E3	   	Atlanta	At-grade	June 30, 1979	2,525	[23]
+Kensington	E8	 	Unincorporated DeKalb County	At-grade	June 26, 1993	5,950	[29]
+King Memorial	E2	   	Atlanta	Elevated	June 30, 1979	1,517	[23]
+Lakewood/Fort McPherson	S4	   	Atlanta / East Point	Embankment	December 15, 1984	2,207	[25]
+Lenox	NE7	 	Atlanta	Underground	December 15, 1984	3,284	[25]
+Lindbergh Center	N6	   	Atlanta	Open-cut	December 15, 1984	8,604	[25]
+Medical Center	N8	 	Sandy Springs	At-grade	June 8, 1996	1,629	[26]
+Midtown	N4	   	Atlanta	Underground	December 18, 1982	5,664	[21]
+North Avenue	N3	   	Atlanta	Underground	December 4, 1981	5,045	[21]
+North Springs†	N11	 	Sandy Springs	Elevated	December 16, 2000	6,436	[30]
+Oakland City	S3	   	Atlanta	Embankment	December 15, 1984	4,432	[25]
+Peachtree Center	N1	   	Atlanta	Underground	September 11, 1982	7,453	[21]
+Sandy Springs	N10	 	Sandy Springs	Underground	December 16, 2000	2,322	[30]
+Vine City	W2	   	Atlanta	At-grade	December 22, 1979	821	[22]
+West End	S2	   	Atlanta	Elevated	September 11, 1982	7,056	[21]
+West Lake	W4	 	Atlanta	At-grade	December 22, 1979	1,378	[22]

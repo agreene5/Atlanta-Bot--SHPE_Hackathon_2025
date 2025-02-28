@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlanta Bot</title>
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .title {
+            text-align: center;
+            color: #444;
+            margin-bottom: 20px;
+        }
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .toggle-container {
+            display: flex;
+            align-items: center;
+        }
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+            margin: 0 10px;
+        }
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        #clearBtn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .chat-container {
+            height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: white;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .message {
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 10px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+        .user-message {
+            background-color: #e3f2fd;
+            margin-left: auto;
+            text-align: right;
+        }
+        .assistant-message {
+            background-color: #f1f1f1;
+            margin-right: auto;
+        }
+        .input-area {
+            display: flex;
+            gap: 10px;
+        }
+        #userInput {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #micBtn {
+            background-color: #28a745;
+        }
+        #micBtn.recording {
+            background-color: #dc3545;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        .notification {
+            text-align: center;
+            font-style: italic;
+            color: #666;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">Atlanta Bot</h1>
+
+    <div class="controls">
+        <div class="toggle-container">
+            <span>English</span>
+            <label class="toggle-switch">
+                <input type="checkbox" id="languageToggle">
+                <span class="slider"></span>
+            </label>
+            <span>Español</span>
+        </div>
+        <button id="clearBtn">Clear Context</button>
+    </div>
+
+    <div class="chat-container" id="chatLog"></div>
+
+    <div class="input-area">
+        <input type="text" id="userInput" placeholder="Type your message here...">
+        <button id="sendBtn">Send</button>
+        <button id="micBtn">🎤</button>
+    </div>
+
+    <script>
+        // Initialize socket connection
+        const socket = io();
+        let isRecording = false;
+        let mediaRecorder = null;
+        let audioChunks = [];
+
+        // DOM elements
+        const chatLog = document.getElementById('chatLog');
+        const userInput = document.getElementById('userInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const micBtn = document.getElementById('micBtn');
+        const languageToggle = document.getElementById('languageToggle');
+        const clearBtn = document.getElementById('clearBtn');
+
+        // Get language setting from server on connect
+        socket.on('connect', () => {
+            console.log('Connected to server');
+        });
+
+        socket.on('language_setting', (data) => {
+            languageToggle.checked = data.spanish;
+            updatePlaceholder();
+        });
+
+        // Handle language toggle
+        languageToggle.addEventListener('change', () => {
+            socket.emit('toggle_language', { spanish: languageToggle.checked });
+            updatePlaceholder();
+        });
+
+        function updatePlaceholder() {
+            userInput.placeholder = languageToggle.checked ?
+                "Escribe tu mensaje aquí..." :
+                "Type your message here...";
+        }
+
+        // Send text messages
+        sendBtn.addEventListener('click', sendMessage);
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+
+        function sendMessage() {
+            const text = userInput.value.trim();
+            if (!text) return;
+
+            socket.emit('user_input', { message: text });
+            userInput.value = '';
+        }
+
+        // Handle chat updates
+        socket.on('chat_update', (data) => {
+            addMessage(data.role, data.content);
+            scrollToBottom();
+        });
+
+        let currentAssistantMsg = null;
+
+        socket.on('assistant_stream', (data) => {
+            if (!currentAssistantMsg) {
+                currentAssistantMsg = document.createElement('div');
+                currentAssistantMsg.className = 'message assistant-message';
+                chatLog.appendChild(currentAssistantMsg);
+            }
+
+            currentAssistantMsg.textContent += data.content;
+            scrollToBottom();
+        });
+
+        socket.on('assistant_done', () => {
+            currentAssistantMsg = null;
+            scrollToBottom();
+        });
+
+        // Audio playback
+        socket.on('play_audio', (data) => {
+            const audio = new Audio(data.path);
+            audio.play();
+        });
+
+        // Clear context
+        clearBtn.addEventListener('click', () => {
+            socket.emit('clear_context');
+        });
+
+        socket.on('context_cleared', () => {
+            chatLog.innerHTML = '';
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = languageToggle.checked ?
+                "Contexto de conversación borrado" :
+                "Conversation context cleared";
+            chatLog.appendChild(notification);
+        });
+
+        // Microphone input
+        micBtn.addEventListener('click', toggleRecording);
+
+        async function toggleRecording() {
+            if (!isRecording) {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    startRecording(stream);
+                } catch (err) {
+                    console.error("Error accessing microphone:", err);
+                    alert("Could not access microphone");
+                }
+            } else {
+                stopRecording();
+            }
+        }
+
+        function startRecording(stream) {
+            mediaRecorder = new MediaRecorder(stream);
+            audioChunks = [];
+
+            mediaRecorder.addEventListener('dataavailable', e => {
+                audioChunks.push(e.data);
+            });
+
+            mediaRecorder.addEventListener('stop', () => {
+                const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                sendAudioToServer(audioBlob);
+
+                // Stop all tracks to release microphone
+                stream.getTracks().forEach(track => track.stop());
+            });
+
+            mediaRecorder.start();
+            isRecording = true;
+            micBtn.classList.add('recording');
+            micBtn.textContent = '⏹️';
+        }
+
+        function stopRecording() {
+            if (mediaRecorder && isRecording) {
+                mediaRecorder.stop();
+                isRecording = false;
+                micBtn.classList.remove('recording');
+                micBtn.textContent = '🎤';
+            }
+        }
+
+        function sendAudioToServer(audioBlob) {
+            const formData = new FormData();
+            formData.append('audio', audioBlob);
+
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = languageToggle.checked ?
+                "Procesando audio..." :
+                "Processing audio...";
+            chatLog.appendChild(notification);
+            scrollToBottom();
+
+            fetch('/process_audio', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                chatLog.removeChild(notification);
+
+                if (data.error) {
+                    console.error(data.error);
+                    return;
+                }
+
+                // Add transcribed text to chat
+                addMessage('user', data.text);
+                // Send to server for processing
+                socket.emit('user_input', { message: data.text });
+            })
+            .catch(err => {
+                console.error("Error processing audio:", err);
+                chatLog.removeChild(notification);
+            });
+        }
+
+        // Helper functions
+        function addMessage(role, content) {
+            const msg = document.createElement('div');
+            msg.className = `message ${role}-message`;
+            msg.textContent = content;
+            chatLog.appendChild(msg);
+        }
+
+        function scrollToBottom() {
+            chatLog.scrollTop = chatLog.scrollHeight;
+        }
+    </script>
+</body>
+</html>
